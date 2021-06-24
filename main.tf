@@ -95,6 +95,9 @@ resource "intersight_kubernetes_cluster_profile" "kubeprof" {
 	moid = data.intersight_kubernetes_network_policy.netcfg_moid.results.0.moid
 	object_type = "kubernetes.NetworkPolicy"
   }
+  worker_size         = "medium"
+  worker_count        = 5
+
 
   sys_config {
 	moid = data.intersight_kubernetes_sys_config_policy.syscfg_moid.results.0.moid
