@@ -13,7 +13,7 @@ data "terraform_remote_state" "global" {
 terraform {
   required_providers {
     intersight = {
-      source = "CiscoDevNet/intersight"
+      source = "dCloud-DC-Practice/intersight"
       version = "1.0.11"
     }
   }
