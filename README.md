@@ -1,1 +1,1 @@
-Deploy the IKS Cluster.
+This workspace is to deploy a IKS cluster using pre-defined policies
