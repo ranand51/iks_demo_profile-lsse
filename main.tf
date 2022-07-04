@@ -61,12 +61,12 @@ data "intersight_ippool_pool" "ippool_moid" {
 
 # Netcfg moids
 data "intersight_kubernetes_network_policy" "netcfg_moid" {
-  name  = local.netcfg_list
+  name  = local.network_pod
 }
 
 # Sysconfig moids
 data "intersight_kubernetes_sys_config_policy" "syscfg_moid" {
-  name  = local.syscfg_list
+  name  = local.network_service
 }
 
 
