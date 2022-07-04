@@ -66,7 +66,7 @@ data "intersight_kubernetes_network_policy" "netcfg_moid" {
 
 # Sysconfig moids
 data "intersight_kubernetes_sys_config_policy" "syscfg_moid" {
-  name  = local.syscgf_list
+  name  = local.syscfg_list
 }
 
 
