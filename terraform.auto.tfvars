@@ -11,9 +11,9 @@ globalwsname = "IKS-Demo-Global-lsse"
 #ippool_list = "testsjcippool"
 
 # Netcfg name
-#netcfg_list = "testsjccidr"
+netcfg_list = "ist-iks-cidr"
 # Syscfg name
-#syscfg_list = "testsjcsyscfg"
+syscfg_list = "ist-iks-syscfg"
 #infra_list = "testsjcinfrapol"
 #ippoolmaster_list = "testsjcippool"
 #ippoolworker_list = "testsjcippool"
