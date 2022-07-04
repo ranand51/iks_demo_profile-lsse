@@ -9,12 +9,12 @@ data "terraform_remote_state" "global" {
   }
 }
 
-# Intersight Provider Information
+# Intersight Provider Information 
 terraform {
   required_providers {
     intersight = {
-      source = "ciscodevnet/intersight"
-      version = "1.0.18"
+      source = "CiscoDevNet/intersight"
+      version = "1.0.11"
     }
   }
 }
@@ -72,35 +72,33 @@ data "intersight_kubernetes_sys_config_policy" "syscfg_moid" {
 
 # kube cluster profiles
 resource "intersight_kubernetes_cluster_profile" "kubeprof" {
-  name = local.clustername
+  name = local.clustername 
   wait_for_completion=false
   organization {
     object_type = "organization.Organization"
     moid        = data.intersight_organization_organization.organization_moid.results.0.moid
   }
   cluster_ip_pools {
-	object_type = "ippool.Pool"
+	object_type = "ippool.Pool" 
 	moid = data.intersight_ippool_pool.ippool_moid.results.0.moid
   }
   management_config {
-	#encrypted_etcd = local.mgmtcfgetcd
+#	encrypted_etcd = local.mgmtcfgetcd
 	load_balancer_count = local.mgmtcfglbcnt
-	ssh_keys = [
+	ssh_keys = [ 
 		 var.mgmtcfgsshkeys
 	]
 	ssh_user = local.mgmtcfgsshuser
-	object_type = "kubernetes.ClusterManagementConfig"
+	object_type = "kubernetes.ClusterManagementConfig" 
   }
   net_config {
 	moid = data.intersight_kubernetes_network_policy.netcfg_moid.results.0.moid
-	object_type = "kubernetes.NetworkPolicy"
+	object_type = "kubernetes.NetworkPolicy" 
   }
-
-
 
   sys_config {
 	moid = data.intersight_kubernetes_sys_config_policy.syscfg_moid.results.0.moid
-	object_type = "kubernetes.SysConfigPolicy"
+	object_type = "kubernetes.SysConfigPolicy" 
   }
 }
 
@@ -136,21 +134,23 @@ resource "intersight_kubernetes_node_group_profile" "masternodegrp" {
   name = local.mastergrpname
   node_type = "ControlPlaneWorker"
   desiredsize = local.masterdesiredsize
+   minsize = local.masterdesiredsize
+   maxsize = 2
 
   ip_pools {
-        object_type = "ippool.Pool"
+        object_type = "ippool.Pool" 
         moid = data.intersight_ippool_pool.ippoolmaster_moid.results.0.moid
   }
 
 
   cluster_profile {
-        object_type = "kubernetes.ClusterProfile"
+        object_type = "kubernetes.ClusterProfile" 
         moid = intersight_kubernetes_cluster_profile.kubeprof.moid
   }
 
 
   kubernetes_version {
-        object_type = "kubernetes.VersionPolicy"
+        object_type = "kubernetes.VersionPolicy" 
         moid = data.intersight_kubernetes_version_policy.kubever_moid.results.0.moid
   }
 
@@ -168,7 +168,7 @@ resource "intersight_kubernetes_virtual_machine_infrastructure_provider" "master
 		object_type = "kubernetes.VirtualMachineInstanceType"
 	}
 	node_group {
-		moid = intersight_kubernetes_node_group_profile.masternodegrp.moid
+		moid = intersight_kubernetes_node_group_profile.masternodegrp.moid 
 		object_type = "kubernetes.NodeGroupProfile"
 	}
 
@@ -183,7 +183,7 @@ resource "intersight_kubernetes_cluster_profile" "kubeprofaction" {
   name = intersight_kubernetes_cluster_profile.kubeprof.name
   organization {
     object_type = "organization.Organization"
-    moid        = data.intersight_organization_organization.organization_moid.results.0.moid
+    moid        = data.intersight_organization_organization.organization_moid.results.0.moid 
   }
 
 }
@@ -212,3 +212,5 @@ locals {
   masterdesiredsize = yamldecode(data.terraform_remote_state.global.outputs.masterdesiredsize)
   masterinfraname = yamldecode(data.terraform_remote_state.global.outputs.masterinfraname)
 }
+
+
