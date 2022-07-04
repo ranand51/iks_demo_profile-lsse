@@ -5,7 +5,7 @@
 
 #name = "testsjc2"
 
-#globalwsname = "rtp-iks-cluster-01-global"
+globalwsname = "IKS-Demo-Global-lsse"
 # profile params
 # IP Pool name and moid
 #ippool_list = "testsjcippool"
