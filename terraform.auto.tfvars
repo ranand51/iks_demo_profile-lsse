@@ -5,7 +5,7 @@
 
 #name = "testsjc2"
 
-globalwsname = "IKS-Demo-Global-lsse"
+globalwsname = "lsse-test-vars"
 # profile params
 # IP Pool name and moid
 #ippool_list = "testsjcippool"
